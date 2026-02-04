@@ -39,7 +39,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('weflut-logo.png'); /* Replace with your image */
+            background-image: image-set(
+                url('weflut-logo.png') 1x,
+                url('weflut-logo@2x.png') 2x
+            );
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -364,6 +367,10 @@
             .email-capture,
             .contact-section {
                 padding: 1.5rem;
+            }
+
+            .background-image {
+                background-position: center top;
             }
         }
     </style>
