@@ -1,543 +1,1109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Coming Soon">
-    <title>Coming Soon | Launching Soon</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="weflut-logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="weflut-logo.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weflut Solutions Services — Know Where. Know Who. Know Trust.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2c5282;
-            --accent-color: #3182ce;
-            --text-light: #ffffff;
-            --text-dark: #2d3748;
-            --overlay-dark: rgba(26, 54, 93, 0.85);
-        }
+  :root {
+    --bg: #f5f3ef;
+    --bg2: #edeae4;
+    --surface: #ffffff;
+    --dark: #0f0e0c;
+    --dark2: #1c1a16;
+    --accent: #c8621a;
+    --accent2: #2563a8;
+    --accent-light: rgba(200, 98, 26, 0.1);
+    --border: #d8d4cc;
+    --text: #1c1a16;
+    --muted: #7a7268;
+    --font-mono: 'Geist Mono', monospace;
+    --font-serif: 'Instrument Serif', serif;
+    --font-sans: 'Geist', sans-serif;
+  }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: var(--text-light);
-            min-height: 100vh;
-            position: relative;
-        }
+  html { scroll-behavior: smooth; }
 
-        /* Background Image Layer */
-        .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: image-set(
-                url('weflut-logo.png') 1x,
-                url('weflut-logo@2x.png') 2x
-            );
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -2;
-        }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
 
-        /* Dark Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--overlay-dark);
-            z-index: -1;
-        }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 64px;
+    background: rgba(245, 243, 239, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    height: 34px;
+    width: auto;
+  }
+  .nav-logo-fallback {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
 
-        /* Logo Section */
-        .logo {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-        .logo img {
-            max-width: 200px;
-            height: auto;
-        }
+  .nav-cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--surface);
+    background: var(--dark);
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
 
-        .logo h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-        }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 64px 80px;
+    gap: 80px;
+    position: relative;
+    overflow: hidden;
+  }
 
-        .logo h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.9;
-            animation: pulseText 1.6s ease-in-out infinite;
-        }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(200, 98, 26, 0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
 
-        @keyframes pulseText {
-            0%, 100% {
-                opacity: 0.35;
-                transform: scale(0.98);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.71rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid rgba(200, 98, 26, 0.2);
+    padding: 6px 14px;
+    border-radius: 40px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2.5s ease infinite;
+  }
 
-        /* Main Content */
-        .content {
-            text-align: center;
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
+  .hero-left h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 5.5vw, 5.2rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    color: var(--dark);
+    animation: fadeUp 0.7s ease 0.25s both;
+  }
+  .hero-left h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
 
-        .content h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
+  .hero-left p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.72;
+    max-width: 480px;
+    margin-bottom: 44px;
+    font-weight: 300;
+    animation: fadeUp 0.7s ease 0.4s both;
+  }
 
-        .content p {
-            font-size: 1.25rem;
-            font-weight: 300;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s ease 0.55s both;
+  }
 
-        /* Forms Container */
-        .forms-wrapper {
-            width: 100%;
-            max-width: 600px;
-            margin-bottom: 3rem;
-        }
+  .btn-primary {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--surface);
+    background: var(--dark);
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
 
-        /* Email Capture Section */
-        .email-capture {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+  .btn-outline {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--text); background: rgba(0,0,0,0.03); }
 
-        .email-capture h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
+  /* HERO VISUAL */
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeUp 0.9s ease 0.5s both;
+  }
 
-        .email-form {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
+  .trust-map {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1;
+  }
 
-        .email-form input[type="email"] {
-            flex: 1;
-            min-width: 250px;
-            padding: 1rem 1.25rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 8px;
-            font-size: 1rem;
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-        }
+  .map-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 98, 26, 0.15);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ringBreath 5s ease-in-out infinite;
+  }
+  .map-ring:nth-child(1) { width: 28%; height: 28%; animation-delay: 0s; }
+  .map-ring:nth-child(2) { width: 52%; height: 52%; animation-delay: 1s; }
+  .map-ring:nth-child(3) { width: 76%; height: 76%; animation-delay: 2s; }
+  .map-ring:nth-child(4) { width: 100%; height: 100%; animation-delay: 3s; }
 
-        .email-form input[type="email"]:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            background: #ffffff;
-        }
+  .map-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 60px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 14px rgba(200, 98, 26, 0.12);
+  }
+  .map-center svg { width: 26px; height: 26px; color: white; }
 
-        .email-form button {
-            padding: 1rem 2rem;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+  .map-node {
+    position: absolute;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--dark);
+    border: 2px solid var(--bg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  }
+  .map-node-label {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    white-space: nowrap;
+    color: var(--muted);
+  }
+  .map-node.verified { background: #1a9c5b; }
+  .map-node.flagged { background: var(--accent); }
 
-        .email-form button:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--dark);
+    padding: 24px 64px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    overflow: hidden;
+  }
+  .trust-label {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .trust-scroll {
+    overflow: hidden;
+    flex: 1;
+  }
+  .trust-items {
+    display: flex;
+    gap: 48px;
+    animation: ticker 22s linear infinite;
+    width: max-content;
+  }
+  .trust-item {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.3);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .trust-item svg { width: 16px; height: 16px; }
 
-        /* Contact Form Section */
-        .contact-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+  /* SECTIONS */
+  .section { padding: 112px 64px; }
 
-        .contact-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
+  .pill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.71rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pill-tag::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 60px;
+    max-width: 580px;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+  /* PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
 
-        .form-group label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            opacity: 0.95;
-        }
+  .pillar {
+    background: var(--bg);
+    padding: 52px 36px;
+    transition: background 0.25s;
+  }
+  .pillar:hover { background: var(--surface); }
 
-        .form-group input,
-        .form-group textarea {
-            padding: 0.875rem 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 8px;
-            font-size: 1rem;
-            color: var(--text-dark);
-            font-family: inherit;
-            transition: all 0.3s ease;
-        }
+  .pillar-icon {
+    width: 46px; height: 46px;
+    background: var(--accent-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    color: var(--accent);
+  }
+  .pillar-icon svg { width: 22px; height: 22px; }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+  .pillar-word {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            background: #ffffff;
-        }
+  .pillar h3 {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
 
-        .contact-form button {
-            padding: 1rem;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 0.5rem;
-        }
+  .pillar p {
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.72;
+    font-weight: 300;
+  }
 
-        .contact-form button:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
+  /* HOW IT WORKS */
+  .how-section { background: var(--dark); color: white; }
+  .how-section .pill-tag { color: rgba(255,255,255,0.35); }
+  .how-section .pill-tag::before { background: rgba(255,255,255,0.25); }
+  .how-section .section-title { color: white; }
+  .how-section .section-title em { color: var(--accent); }
 
-        /* Social Links */
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
 
-        .social-links a {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            color: var(--text-light);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
+  .how-card {
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 44px 36px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    transition: background 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .how-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(200, 98, 26, 0.3);
+  }
 
-        .social-links a:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-        }
+  .how-num {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    color: rgba(255,255,255,0.05);
+    position: absolute;
+    top: 12px; right: 18px;
+    line-height: 1;
+  }
 
-        .social-links svg {
-            width: 20px;
-            height: 20px;
-        }
+  .how-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    color: white;
+  }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
+  .how-card p {
+    font-size: 0.87rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.75;
+    font-weight: 300;
+  }
 
-        /* Success Message */
-        .success-message {
-            display: none;
-            padding: 1rem;
-            background: rgba(72, 187, 120, 0.2);
-            border: 2px solid rgba(72, 187, 120, 0.5);
-            border-radius: 8px;
-            margin-top: 1rem;
-            color: #68d391;
-        }
+  /* FEATURES SPLIT */
+  .features-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
 
-        .success-message.show {
-            display: block;
-        }
+  .features-list { list-style: none; margin-top: 40px; }
 
-        .error-message {
-            display: none;
-            padding: 1rem;
-            background: rgba(245, 101, 101, 0.2);
-            border: 2px solid rgba(245, 101, 101, 0.5);
-            border-radius: 8px;
-            margin-top: 1rem;
-            color: #feb2b2;
-        }
+  .feature-item {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .feature-item:first-child { border-top: 1px solid var(--border); }
 
-        .error-message.show {
-            display: block;
-        }
+  .feature-icon {
+    width: 36px; height: 36px;
+    flex-shrink: 0;
+    background: var(--accent-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+  .feature-icon svg { width: 18px; height: 18px; }
 
-        .hidden {
-            display: none;
-        }
+  .feature-text h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
+  .feature-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .content h2 {
-                font-size: 2rem;
-            }
+  /* DASHBOARD VISUAL */
+  .features-visual {
+    background: var(--dark2);
+    border-radius: 16px;
+    padding: 36px;
+  }
 
-            .content p {
-                font-size: 1.1rem;
-            }
+  .vis-header {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vis-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
 
-            .logo h1 {
-                font-size: 2rem;
-            }
+  .vis-rows { display: flex; flex-direction: column; gap: 10px; }
 
-            .email-form {
-                flex-direction: column;
-            }
+  .vis-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
 
-            .email-form input[type="email"] {
-                min-width: 100%;
-            }
+  .vis-row-left { display: flex; align-items: center; gap: 12px; }
 
-            .email-capture,
-            .contact-section {
-                padding: 1.5rem;
-            }
+  .vis-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 600;
+  }
 
-            .background-image {
-                background-position: center top;
-            }
-        }
-    </style>
+  .vis-name { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 500; }
+  .vis-meta { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,255,255,0.28); margin-top: 2px; }
+
+  .vis-status {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 40px;
+    font-weight: 600;
+  }
+  .vis-status.trusted { background: rgba(26,156,91,0.14); color: #1a9c5b; border: 1px solid rgba(26,156,91,0.22); }
+  .vis-status.flagged { background: rgba(200,98,26,0.14); color: var(--accent); border: 1px solid rgba(200,98,26,0.22); }
+  .vis-status.pending { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.07); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--accent);
+    padding: 100px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cta-tag::before { content: ''; display: block; width: 22px; height: 1px; background: rgba(255,255,255,0.35); }
+
+  .cta-section h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .cta-section > div > p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .form-block { margin-bottom: 40px; }
+  .form-block-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+  }
+
+  .form-row { display: flex; }
+  input[type="email"], input[type="text"], textarea {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--dark);
+    background: white;
+    border: none;
+    padding: 13px 18px;
+    outline: none;
+    flex: 1;
+    border-radius: 6px 0 0 6px;
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: white;
+    background: var(--dark);
+    border: none;
+    padding: 13px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 0 6px 6px 0;
+    white-space: nowrap;
+  }
+  button[type="submit"]:hover { background: #2a2722; }
+
+  .form-note { font-size: 0.76rem; color: rgba(255,255,255,0.45); margin-top: 10px; font-weight: 300; }
+
+  .contact-fields { display: flex; flex-direction: column; gap: 10px; }
+  .contact-fields input, .contact-fields textarea {
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .contact-fields textarea { height: 100px; resize: vertical; }
+
+  .contact-submit {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: white;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    width: fit-content;
+    margin-top: 4px;
+  }
+  .contact-submit:hover { opacity: 0.9; }
+
+  .form-msg {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 10px;
+    display: none;
+    color: rgba(255,255,255,0.85);
+  }
+  .form-msg.error { color: rgba(255,160,100,0.9); }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 64px 64px 36px; }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 56px;
+    margin-bottom: 52px;
+    padding-bottom: 52px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .footer-logo {
+    height: 30px;
+    margin-bottom: 16px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+  }
+  .footer-logo-fallback {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.32); line-height: 1.72; font-weight: 300; max-width: 280px; }
+
+  .footer-col h4 { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 20px; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { font-size: 0.87rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; font-weight: 300; }
+  .footer-col a:hover { color: rgba(255,255,255,0.85); }
+
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.22); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 0.76rem; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.55); }
+
+  /* ANIMATIONS */
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  @keyframes ringBreath { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+  .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .features-split { grid-template-columns: 1fr; gap: 56px; }
+    .cta-section { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .how-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 50px; }
+    .hero-right { order: -1; }
+    .section { padding: 72px 24px; }
+    .pillars { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: 1fr; }
+    .trust-bar { padding: 20px 24px; }
+    .cta-section { padding: 72px 24px; }
+    footer { padding: 48px 24px 28px; }
+    .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <div class="background-image"></div>
-    <div class="overlay"></div>
 
-    <div class="container">
-        <!-- Logo/Brand -->
-        <div class="logo">
-            <!-- Option 1: Use an image logo -->
-            <img src="weflut.png" alt="Company Logo">
-            
-            <!-- Option 2: Text-based logo (replace with your company name) -->
-            <h3>Coming Soon</h3>
-        </div>
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <img src="https://weflut.com/weflut.png" alt="Weflut" id="navLogo">
+    <span class="nav-logo-fallback" id="navFallback" style="display:none">Weflut</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#what-we-do">What We Do</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#notify" class="nav-cta">Get Early Access</a>
+</nav>
 
-        <!-- Main Content -->
-        <div class="content">
-            <h1>Weflut Solutions Services</h1>
-            <p>We help you understand where things are, how they move, who they belong to, and whether they can be trusted through the use of
-            secure, scalable software.</p>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Launching Soon — Weflut Solutions Services
+    </div>
+    <h1>Know Where.<br>Know Who.<br><em>Know Trust.</em></h1>
+    <p>We help you understand where things are, how they move, who they belong to, and whether they can be trusted — through the use of secure, scalable software.</p>
+    <div class="hero-actions">
+      <a href="#notify" class="btn-primary">Get Notified at Launch</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
 
-        <!-- Forms Wrapper -->
-        <div class="forms-wrapper">
-            <!-- Email Capture -->
-            <div class="email-capture">
-                <h3>Get Notified</h3>
-                <form class="email-form" id="notifyForm" action="https://api.web3forms.com/submit" method="POST" data-form-name="Launch Notifications">
-                    <input type="hidden" name="access_key" value="883f1654-1867-4f9e-83f5-8ca925d47faf">
-                    <input type="hidden" name="subject" value="New launch notification request">
-                    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Enter your email address" 
-                        required
-                        aria-label="Email address for launch notifications"
-                    >
-                    <button type="submit">Notify Me</button>
-                </form>
-                <div class="success-message" id="notifySuccess">
-                    Thank you! We'll notify you when we launch.
-                </div>
-                <div class="error-message" id="notifyError">
-                    Sorry, something went wrong. Please try again.
-                </div>
-            </div>
+  <div class="hero-right">
+    <div class="trust-map">
+      <div class="map-ring"></div>
+      <div class="map-ring"></div>
+      <div class="map-ring"></div>
+      <div class="map-ring"></div>
 
-            <!-- Contact Form -->
-            <div class="contact-section">
-                <h3>Get In Touch</h3>
-                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" data-form-name="Contact Form">
-                    <input type="hidden" name="access_key" value="883f1654-1867-4f9e-83f5-8ca925d47faf">
-                    <input type="hidden" name="subject" value="New contact message">
-                    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-email">Email</label>
-                        <input type="email" id="contact-email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit">Send Message</button>
-                </form>
-                <div class="success-message" id="contactSuccess">
-                    Thank you for your message! We'll be in touch soon.
-                </div>
-                <div class="error-message" id="contactError">
-                    Sorry, something went wrong. Please try again.
-                </div>
-            </div>
-        </div>
+      <!-- connector lines via SVG -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 480 480">
+        <line x1="240" y1="240" x2="340" y2="90" stroke="rgba(200,98,26,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="240" y1="240" x2="95" y2="155" stroke="rgba(200,98,26,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="240" y1="240" x2="360" y2="370" stroke="rgba(200,98,26,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="240" y1="240" x2="110" y2="370" stroke="rgba(200,98,26,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+      </svg>
 
-        <!-- Social Links -->
-        <div class="social-links">
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/company/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-            </a>
+      <!-- nodes -->
+      <div class="map-node verified" style="top:15%;left:68%;"></div>
+      <span class="map-node-label" style="top:calc(15% + 16px);left:65%;transform:translateX(-50%);">Verified</span>
 
-            <!-- Twitter/X -->
-            <a href="https://twitter.com/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-            </a>
+      <div class="map-node" style="top:28%;left:16%;"></div>
+      <span class="map-node-label" style="top:calc(28% + 16px);left:16%;transform:translateX(-50%);">Tracked</span>
 
-            <!-- Facebook -->
-            <a href="https://facebook.com/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                </svg>
-            </a>
+      <div class="map-node flagged" style="top:74%;left:72%;"></div>
+      <span class="map-node-label" style="top:calc(74% + 16px);left:72%;transform:translateX(-50%);">Flagged</span>
 
-            <!-- Instagram -->
-            <a href="https://instagram.com/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-            </a>
-        </div>
+      <div class="map-node verified" style="top:74%;left:20%;"></div>
+      <span class="map-node-label" style="top:calc(74% + 16px);left:20%;transform:translateX(-50%);">Trusted</span>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p>&copy; 2026 Weflut Solutions Services. All rights reserved.</p>
-        </div>
+      <div class="map-center">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-label">Built for</div>
+  <div class="trust-scroll">
+    <div class="trust-items">
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>Supply Chain Visibility</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>Asset Provenance</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>Real-Time Tracking</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/></svg>Ownership Verification</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>Secure Infrastructure</div>
+      <!-- duplicate for loop -->
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>Supply Chain Visibility</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>Asset Provenance</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>Real-Time Tracking</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/></svg>Ownership Verification</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>Secure Infrastructure</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<section class="section" id="what-we-do">
+  <div class="pill-tag fade-up">What We Do</div>
+  <h2 class="section-title fade-up">Four questions.<br>One <em>platform.</em></h2>
+
+  <div class="pillars fade-up">
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+      </div>
+      <div class="pillar-word">Where</div>
+      <h3>Location Intelligence</h3>
+      <p>Know where your assets, shipments, and resources are — in real time, at any scale, across any geography.</p>
     </div>
 
-    <script>
-        const handleWeb3Form = (form, successEl, errorEl) => {
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault();
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+      </div>
+      <div class="pillar-word">How They Move</div>
+      <h3>Movement Tracking</h3>
+      <p>Trace every step of an asset's journey — routes, handoffs, velocity, and anomalies — with full audit trails and real-time alerts.</p>
+    </div>
 
-                successEl.classList.remove('show');
-                errorEl.classList.remove('show');
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/></svg>
+      </div>
+      <div class="pillar-word">Who They Belong To</div>
+      <h3>Ownership Clarity</h3>
+      <p>Maintain an unambiguous chain of custody and provenance. Always know who holds what — and prove it to anyone who asks.</p>
+    </div>
 
-                const formData = new FormData(form);
-                const formName = form.dataset.formName;
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+      </div>
+      <div class="pillar-word">Whether They're Trusted</div>
+      <h3>Trust Verification</h3>
+      <p>Automated trust scoring, compliance checks, and anomaly detection so every decision is grounded in verified truth.</p>
+    </div>
+  </div>
+</section>
 
-                if (formName && !formData.get('form_name')) {
-                    formData.append('form_name', formName);
-                }
+<!-- HOW IT WORKS -->
+<section class="section how-section" id="how">
+  <div class="pill-tag fade-up">How It Works</div>
+  <h2 class="section-title fade-up">Secure software,<br>built to <em>scale</em> with you.</h2>
 
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: formData
-                    });
+  <div class="how-grid fade-up">
+    <div class="how-card">
+      <div class="how-num">1</div>
+      <h3>Ingest</h3>
+      <p>Connect existing data sources — IoT sensors, ERP systems, logistics APIs, and custom feeds — through our unified ingestion layer. No rip-and-replace required.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">2</div>
+      <h3>Analyze</h3>
+      <p>Our engine processes movement, ownership, and trust signals in real time, enriching data with context, flags, and verified provenance across your entire network.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">3</div>
+      <h3>Act</h3>
+      <p>Surface insights through dashboards, alerts, and APIs your teams already use. Trigger workflows automatically when something moves, changes hands, or fails a trust check.</p>
+    </div>
+  </div>
+</section>
 
-                    if (response.ok) {
-                        successEl.classList.add('show');
-                        form.reset();
-                        setTimeout(() => {
-                            successEl.classList.remove('show');
-                        }, 5000);
-                    } else {
-                        errorEl.classList.add('show');
-                    }
-                } catch (error) {
-                    errorEl.classList.add('show');
-                }
-            });
-        };
+<!-- PLATFORM -->
+<section class="section" id="platform">
+  <div class="features-split">
+    <div>
+      <div class="pill-tag fade-up">The Platform</div>
+      <h2 class="section-title fade-up">Everything you need<br>to answer the <em>hard questions.</em></h2>
 
-        const notifyForm = document.getElementById('notifyForm');
-        const notifySuccess = document.getElementById('notifySuccess');
-        const notifyError = document.getElementById('notifyError');
+      <ul class="features-list fade-up">
+        <li class="feature-item">
+          <div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
+          <div class="feature-text">
+            <h4>Real-Time Event Streaming</h4>
+            <p>Sub-second data ingestion and propagation across distributed nodes, with guaranteed delivery and full replay capability.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+          <div class="feature-text">
+            <h4>Tamper-Evident Audit Trails</h4>
+            <p>Cryptographically signed records of every state change, transfer, and verification — immutable, exportable, and regulator-ready.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg></div>
+          <div class="feature-text">
+            <h4>Scalable Cloud Architecture</h4>
+            <p>Multi-region deployment, auto-scaling, and 99.9%+ uptime SLAs — from hundreds of assets to hundreds of millions.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg></div>
+          <div class="feature-text">
+            <h4>Open API & Integrations</h4>
+            <p>REST and webhook APIs with pre-built connectors for major logistics, ERP, and IoT platforms. Your data, your way.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-        handleWeb3Form(notifyForm, notifySuccess, notifyError);
+    <div class="features-visual fade-up">
+      <div class="vis-header">
+        <div class="vis-dot"></div>
+        Live Trust Dashboard
+      </div>
+      <div class="vis-rows">
+        <div class="vis-row">
+          <div class="vis-row-left">
+            <div class="vis-avatar" style="background:rgba(26,156,91,0.18);color:#1a9c5b;">S1</div>
+            <div><div class="vis-name">Shipment #4821-A</div><div class="vis-meta">Last seen: Chicago Hub · 2m ago</div></div>
+          </div>
+          <div class="vis-status trusted">Verified</div>
+        </div>
+        <div class="vis-row">
+          <div class="vis-row-left">
+            <div class="vis-avatar" style="background:rgba(200,98,26,0.18);color:var(--accent);">A7</div>
+            <div><div class="vis-name">Asset GX-7700</div><div class="vis-meta">Ownership mismatch detected</div></div>
+          </div>
+          <div class="vis-status flagged">Flagged</div>
+        </div>
+        <div class="vis-row">
+          <div class="vis-row-left">
+            <div class="vis-avatar" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.35);">P3</div>
+            <div><div class="vis-name">Package #0093</div><div class="vis-meta">In transit · Awaiting scan</div></div>
+          </div>
+          <div class="vis-status pending">Pending</div>
+        </div>
+        <div class="vis-row">
+          <div class="vis-row-left">
+            <div class="vis-avatar" style="background:rgba(26,156,91,0.18);color:#1a9c5b;">D2</div>
+            <div><div class="vis-name">Device Fleet B</div><div class="vis-meta">All 248 units reporting · Dallas</div></div>
+          </div>
+          <div class="vis-status trusted">Verified</div>
+        </div>
+        <div class="vis-row">
+          <div class="vis-row-left">
+            <div class="vis-avatar" style="background:rgba(26,156,91,0.18);color:#1a9c5b;">C9</div>
+            <div><div class="vis-name">Container CNT-9182</div><div class="vis-meta">Transferred · New owner confirmed</div></div>
+          </div>
+          <div class="vis-status trusted">Verified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const contactForm = document.getElementById('contactForm');
-        const contactSuccess = document.getElementById('contactSuccess');
-        const contactError = document.getElementById('contactError');
+<!-- NOTIFY + CONTACT -->
+<section class="cta-section" id="notify">
+  <div>
+    <div class="cta-tag">Coming Soon</div>
+    <h2>Be first to know<br>when we launch.</h2>
+    <p>Weflut is currently in development. Leave your email and we'll reach out the moment we go live — no spam, just the launch.</p>
+  </div>
 
-        handleWeb3Form(contactForm, contactSuccess, contactError);
-    </script>
+  <div>
+    <div class="form-block">
+      <div class="form-block-label">Get Notified</div>
+      <div class="form-row">
+        <input type="email" id="notifyEmail" placeholder="your@email.com">
+        <button type="submit" onclick="handleNotify()">Notify Me</button>
+      </div>
+      <div class="form-msg" id="notifyMsg"></div>
+      <p class="form-note">No spam. Launch notification only.</p>
+    </div>
+
+    <div id="contact">
+      <div class="form-block-label">Get In Touch</div>
+      <div class="contact-fields">
+        <input type="text" id="contactName" placeholder="Your name">
+        <input type="email" id="contactEmail" placeholder="your@email.com">
+        <textarea id="contactMsg" placeholder="Your message"></textarea>
+        <button class="contact-submit" onclick="handleContact()">Send Message →</button>
+        <div class="form-msg" id="contactFeedback"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img class="footer-logo" src="https://weflut.com/weflut.png" alt="Weflut" id="footerLogo">
+      <span class="footer-logo-fallback" id="footerFallback" style="display:none">Weflut</span>
+      <p>Weflut Solutions Services — secure, scalable software for location, movement, ownership, and trust.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#">Location Intelligence</a></li>
+        <li><a href="#">Movement Tracking</a></li>
+        <li><a href="#">Ownership Clarity</a></li>
+        <li><a href="#">Trust Verification</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="mailto:hello@weflut.com">hello@weflut.com</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Weflut Solutions Services. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Logo fallback
+  document.getElementById('navLogo').onerror = function() {
+    this.style.display = 'none';
+    document.getElementById('navFallback').style.display = 'block';
+  };
+  document.getElementById('footerLogo').onerror = function() {
+    this.style.display = 'none';
+    document.getElementById('footerFallback').style.display = 'block';
+  };
+
+  // Scroll fade-up
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Nav shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.boxShadow =
+      window.scrollY > 60 ? '0 2px 20px rgba(0,0,0,0.07)' : 'none';
+  });
+
+  // Notify form
+  function handleNotify() {
+    const email = document.getElementById('notifyEmail').value.trim();
+    const msg = document.getElementById('notifyMsg');
+    if (!email || !email.includes('@')) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.className = 'form-msg error';
+      msg.style.display = 'block';
+      return;
+    }
+    msg.textContent = "Thank you! We'll notify you when we launch.";
+    msg.className = 'form-msg';
+    msg.style.display = 'block';
+    document.getElementById('notifyEmail').value = '';
+  }
+
+  // Contact form
+  function handleContact() {
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMsg').value.trim();
+    const fb = document.getElementById('contactFeedback');
+    if (!name || !email || !message) {
+      fb.textContent = 'Please fill in all fields.';
+      fb.className = 'form-msg error';
+      fb.style.display = 'block';
+      return;
+    }
+    fb.textContent = "Thank you for your message! We'll be in touch soon.";
+    fb.className = 'form-msg';
+    fb.style.display = 'block';
+    document.getElementById('contactName').value = '';
+    document.getElementById('contactEmail').value = '';
+    document.getElementById('contactMsg').value = '';
+  }
+</script>
 </body>
 </html>
